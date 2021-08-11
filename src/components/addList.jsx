@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { array } from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { addText } from '../libs/store/features/textListSlice';
 export default function AddList() {

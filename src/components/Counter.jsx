@@ -40,12 +40,6 @@ export default function Counter() {
     const inputValid = inputValue.length > 0 ? Number(inputValue) : 0;
     dispatch(setMin(inputValid));
   };
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      console.log('enter press here! ');
-    }
-  };
-
   return (
     <div className="my-5">
       <div className="flex items-center justify-center">
