@@ -23,6 +23,7 @@ export const counterSlice = createSlice({
         state.value = state.min;
         return;
       }
+      state.value -= state.step;
     },
 
     setStep: (state, action) => {

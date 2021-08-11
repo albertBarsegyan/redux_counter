@@ -7,6 +7,7 @@ import {
   setMax,
   setMin,
 } from '../libs/store/features/counter';
+import AddList from './addList';
 
 export default function Counter() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export default function Counter() {
     const inputValid = inputValue.length > 0 ? Number(inputValue) : 1;
     dispatch(setStep(inputValid));
   };
+
   const setMaxValue = () => {
     const inputValue = maxInput.current.value;
     const inputValid = inputValue.length > 0 ? Number(inputValue) : 100;
@@ -38,35 +40,88 @@ export default function Counter() {
     const inputValid = inputValue.length > 0 ? Number(inputValue) : 0;
     dispatch(setMin(inputValid));
   };
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      console.log('enter press here! ');
+    }
+  };
 
   return (
-    <div>
-      {count}
-      <div>
-        <span>{step}</span>
-        <input type="text" ref={stepInput} />
-        <button type="button" onClick={setStepValue}>
+    <div className="my-5">
+      <div className="flex items-center justify-center">
+        <p className="w-1/6 text-4xl text-green-500 border border-green-500 p-4">
+          {count}
+        </p>
+      </div>
+      <div className="my-2">
+        <span className="text-green-500 px-2 py-3 text-sm border border-green-500">
+          {step}
+        </span>
+        <input
+          onBlur={setStepValue}
+          type="text"
+          ref={stepInput}
+          className="text-sm py-3 mx-2 border border-green-500 text-green-500 outline-none"
+        />
+        <button
+          className="border border-green-500 text-green-500 px-4 py-2"
+          type="button"
+          onClick={setStepValue}
+        >
           Add Step
         </button>
       </div>
-      <div>
-        <span>{max}</span>
-        <input type="text" ref={maxInput} />
-        <button type="button" onClick={setMaxValue}>
+      <div className="my-2">
+        <span className="text-green-500 px-2 py-3 border border-green-500">
+          {max}
+        </span>
+        <input
+          type="text"
+          ref={maxInput}
+          onBlur={setMaxValue}
+          className="text-sm py-3 mx-2 border border-green-500 text-green-500 outline-none"
+        />
+        <button
+          className="border border-green-500 text-green-500 px-4 py-2"
+          type="button"
+          onClick={setMaxValue}
+        >
           Set max
         </button>
       </div>
-      <div>
-        <span>{min}</span>
-        <input type="text" ref={minInput} />
-        <button type="button" onClick={setMinValue}>
+      <div className="my-2">
+        <span className="text-green-500 border-green-500 border px-2 py-3 text-sm">
+          {min}
+        </span>
+        <input
+          type="text"
+          ref={minInput}
+          onBlur={setMinValue}
+          className="text-sm py-3 mx-2 border border-green-500 text-green-500 outline-none"
+        />
+        <button
+          className="border border-green-500 text-green-500 px-4 py-2"
+          type="button"
+          onClick={setMinValue}
+        >
           Set min
         </button>
       </div>
       <div>
-        <button onClick={handleInc}>+</button>
-        <button onClick={handleDec}>-</button>
+        <button
+          onClick={handleInc}
+          className="border border-green-500 text-green-500 px-4 py-2"
+        >
+          +
+        </button>
+        <button
+          onClick={handleDec}
+          className="border border-green-500 text-green-500 px-4 py-2"
+        >
+          -
+        </button>
       </div>
+      <AddList />
     </div>
   );
 }
